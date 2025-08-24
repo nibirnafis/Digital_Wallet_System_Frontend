@@ -7,7 +7,7 @@ const NavRoutes = () => {
     const user = useSelector((state: RootState) => state.auth.user)
 
     return (
-        <div className="flex gap-4">
+        <div className="flex gap-4 text-yellow-300">
             <NavLink to='/'>Home</NavLink>
             {
                 user &&
@@ -16,10 +16,6 @@ const NavRoutes = () => {
             <NavLink to='/features'>Features</NavLink>
             <NavLink to='/contact'>Contact</NavLink>
             <NavLink to='/faq'>FAQ</NavLink>
-            {
-                !user &&
-                <NavLink to='/login'>Login</NavLink>
-            }
         </div>
     );
 };

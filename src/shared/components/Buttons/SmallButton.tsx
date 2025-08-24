@@ -4,7 +4,7 @@ interface IProps {
 
 const SmallButton = ({title}: IProps) => {
     return (
-        <button className="bg-yellow-400">{title}</button>
+        <button className="bg-yellow-300">{title}</button>
     );
 };
 

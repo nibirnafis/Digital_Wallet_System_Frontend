@@ -1,16 +1,11 @@
 import { Link } from "react-router-dom";
 
-const UserActions = () => {
+const AdminActions = () => {
     return (
         <div className="flex justify-between">
-            <Link to='/transaction-form/send-money'>
+            <Link to='/transaction-form/cash-in'>
                 <div>
-                    <p>send money</p>
-                </div>
-            </Link>
-            <Link to='/transaction-form/cash-out'>
-                <div>
-                    <p>Cash Out</p>
+                    <p>Cash In</p>
                 </div>
             </Link>
             <Link to='/add-money-form/bank-transfer'>
@@ -22,4 +17,4 @@ const UserActions = () => {
     );
 };
 
-export default UserActions;
+export default AdminActions;

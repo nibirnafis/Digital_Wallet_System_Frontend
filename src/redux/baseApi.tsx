@@ -39,15 +39,15 @@ export const baseApi = createApi({
       query: () => "/transaction/get-transaction-me"
     }),
     transferMoney: build.mutation({
-      query: ({phone, amount, type}) => ({
-        url: `/transaction/${type}`,
+      query: ({phone, amount, transactionType}) => ({
+        url: `/transaction/${transactionType}`,
         method: "POST",
         body: {phone, amount}
       })
     }),
     addMoney: build.mutation({
-      query: ({amount, type}) => ({
-        url: `/transaction/add-money/${type}`,
+      query: ({amount, transactionType}) => ({
+        url: `/transaction/add-money/${transactionType}`,
         method: "POST",
         body: {amount}
       })

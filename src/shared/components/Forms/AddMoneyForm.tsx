@@ -3,9 +3,9 @@ import { useAddMoneyMutation } from "../../../redux/baseApi";
 
 const AddMoneyForm = () => {
 
-    const addMoneyType = useParams().type
+    const transactionType = useParams().type
     const [ addMoney ] = useAddMoneyMutation()
-    console.log(addMoneyType)
+    console.log(transactionType)
 
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -14,14 +14,14 @@ const AddMoneyForm = () => {
             const amount = Number(form.amount.value)
     
             
-            const transactionInfo = await addMoney({amount, addMoneyType}).unwrap()
+            const transactionInfo = await addMoney({amount, transactionType}).unwrap()
             console.log(transactionInfo)
             
         }
 
     return (
         <div className="flex flex-col items-center border-blue-900 border-[2px] rounded-2xl p-5 gap-2 mb-10">
-            <p className="text-4xl font-bold text-center pb-4">{addMoneyType}</p>
+            <p className="text-4xl font-bold text-center pb-4">{transactionType}</p>
             <form onSubmit={handleSubmit} className="flex flex-col">
                 <label>Amount:
                     <input name="amount" type="number" />
