@@ -2,18 +2,17 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../redux/configureStore";
 import UserActions from "./UserActions";
-import MyTransactions from "../../transaction/components/MyTransactions";
 import { useState } from "react";
 import LogoutButton from "../../../shared/components/LogoutButton";
-// import UserNavs from "./UserNavs";
+import RecentTransactions from "../../transaction/components/RecentTransactions";
 
 const UserDash = () => {
 
     const user = useSelector((state: RootState) => state.auth.user)
     const navigate = useNavigate()
-
     const [ isDisplayed, setIsDisplayed ] = useState(false)
 
+    
 
     const handleOpenForm = () =>{
         setIsDisplayed(!isDisplayed)
@@ -22,7 +21,7 @@ const UserDash = () => {
     
     const handleCloseForm = () =>{
         setIsDisplayed(!isDisplayed)
-        navigate('/dashboard/user')
+        navigate(`/dashboard/${user?.role.toLowerCase()}`)
     }
 
 
@@ -31,7 +30,8 @@ const UserDash = () => {
         <div className="grow">
             {
                 isDisplayed ?
-                <div className="h-full w-full fixed">
+                <div className="flex justify-center items-center h-full w-full fixed">
+                    <div className="bg-white opacity-80 h-full w-full"></div>
                     <Outlet></Outlet>
                     <button onClick={handleCloseForm} className="bg-red-700 rounded-full leading-none text-white p-2 absolute top-12 right-12">X</button>
                 </div>
@@ -56,7 +56,7 @@ const UserDash = () => {
                 <button onClick={handleOpenForm}>
                     <UserActions></UserActions>
                 </button>
-                <MyTransactions></MyTransactions>
+                <RecentTransactions></RecentTransactions>
                 <LogoutButton></LogoutButton>
             </div>
         </div>

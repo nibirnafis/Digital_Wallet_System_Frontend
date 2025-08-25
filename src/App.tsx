@@ -3,7 +3,6 @@ import './App.css'
 import Footer from './shared/components/Footer/Footer'
 import Navbar from './shared/components/Navbar/Navbar'
 import RefreshToken from './features/Auth/components/RefreshToken'
-import LogoutButton from './shared/components/LogoutButton'
 
 function App() {
 
@@ -13,7 +12,6 @@ function App() {
       <Navbar></Navbar>
       <Outlet></Outlet>
       <RefreshToken></RefreshToken>
-      <LogoutButton></LogoutButton>
       <Footer></Footer>
     </div>
     </>

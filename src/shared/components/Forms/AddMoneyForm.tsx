@@ -15,13 +15,12 @@ const AddMoneyForm = () => {
     
             
             const transactionInfo = await addMoney({amount, transactionType}).unwrap()
-            console.log(transactionInfo)
-            
+            console.log(transactionInfo)  
         }
 
     return (
-        <div className="flex flex-col items-center border-blue-900 border-[2px] rounded-2xl p-5 gap-2 mb-10">
-            <p className="text-4xl font-bold text-center pb-4">{transactionType}</p>
+        <div className="absolute bg-white text-blue-900 rounded-2xl p-6 border-blue-900 border-1">
+            <p className="text-4xl font-bold text-center pb-4">{transactionType && transactionType.replace("-", " ").toUpperCase()}</p>
             <form onSubmit={handleSubmit} className="flex flex-col">
                 <label>Amount:
                     <input name="amount" type="number" />

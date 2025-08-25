@@ -28,6 +28,7 @@ const Login = () => {
                 role: userInfo.data.role,
                 wallet: userInfo.data.wallet
             }
+            console.log(userInfo)
             dispatch(setUser(payload))
             navigate(`/dashboard/${userInfo.data.role.toLowerCase()}`)
         }
