@@ -5,13 +5,12 @@ import Contact from "../shared/components/Contact";
 import FAQ from "../shared/components/FAQ";
 import Features from "../shared/components/Features"
 import Login from "../features/Auth/components/Login";
-import MyTransactions from "../features/transaction/components/MyTransactions";
 import AdminDash from "../features/Modules/Admin/AdminDash";
 import UserDash from "../features/Modules/User/UserDash";
 import AgentDash from "../features/Modules/Agent/AgentDash";
 import TransactionForm from "../shared/components/Forms/TransactionForm";
 import AddMoneyForm from "../shared/components/Forms/AddMoneyForm";
-import UserActions from "../features/Modules/User/UserActions";
+// import UserActions from "../features/Modules/User/UserActions";
 
 
 
@@ -38,6 +37,10 @@ const routes = createBrowserRouter([
                 path: '/faq',
             },
             {
+                element: <Login></Login>,
+                path: '/login',
+            },
+            {
                 element: <AdminDash></AdminDash>,
                 path: '/dashboard/admin',
             },
@@ -46,30 +49,18 @@ const routes = createBrowserRouter([
                 path: '/dashboard/user',
                 children: [
                     {
-                        element: <UserActions></UserActions>,
-                        path: '/dashboard/user',
+                        element: <TransactionForm></TransactionForm>,
+                        path: '/dashboard/user/transaction-form/:type',
                     },
                     {
-                        element: <MyTransactions></MyTransactions>,
-                        path: '/dashboard/user/transactions/me',
-                    }
+                        element: <AddMoneyForm></AddMoneyForm>,
+                        path: '/dashboard/user/add-money-form/:type',
+                    },
                 ]
             },
             {
                 element: <AgentDash></AgentDash>,
                 path: '/dashboard/agent',
-            },
-            {
-                element: <Login></Login>,
-                path: '/login',
-            },
-            {
-                element: <TransactionForm></TransactionForm>,
-                path: '/transaction-form/:type',
-            },
-            {
-                element: <AddMoneyForm></AddMoneyForm>,
-                path: '/add-money-form/:type',
             },
         ]
     }

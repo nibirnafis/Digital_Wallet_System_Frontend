@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-    <div className='flex flex-col justify-between'>
+    <div className='flex flex-col justify-between min-h-screen'>
       <Navbar></Navbar>
       <Outlet></Outlet>
       <Footer></Footer>
