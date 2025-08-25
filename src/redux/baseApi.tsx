@@ -22,6 +22,9 @@ export const baseApi = createApi({
     userLogout: build.query({
       query: () => "/auth/logout"
     }),
+    refreshToken: build.query({
+      query: () => "/auth/refresh-token"
+    }),
 
 
 
@@ -58,7 +61,7 @@ export const baseApi = createApi({
 
 
 export const { 
-  useUserLoginMutation, useLazyUserLogoutQuery, 
+  useUserLoginMutation, useLazyUserLogoutQuery, useLazyRefreshTokenQuery,
   useGetProfileQuery,
   useTransferMoneyMutation, useAddMoneyMutation,
   useGetMyTransactionsQuery

@@ -1,19 +1,16 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import { useLazyUserLogoutQuery } from "../../../redux/baseApi";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import type { RootState } from "../../../redux/configureStore";
-import { clearUser } from "../../Auth/slice/auth.slice";
 import UserActions from "./UserActions";
 import MyTransactions from "../../transaction/components/MyTransactions";
 import { useState } from "react";
+import LogoutButton from "../../../shared/components/LogoutButton";
 // import UserNavs from "./UserNavs";
 
 const UserDash = () => {
 
     const user = useSelector((state: RootState) => state.auth.user)
-    const dispatch = useDispatch()
     const navigate = useNavigate()
-    const [ userLogout ] = useLazyUserLogoutQuery()
 
     const [ isDisplayed, setIsDisplayed ] = useState(false)
 
@@ -28,11 +25,6 @@ const UserDash = () => {
         navigate('/dashboard/user')
     }
 
-    const handleLogout = () => {
-        userLogout(undefined)
-        dispatch(clearUser())
-        navigate('/login')
-    }
 
     return (
         <>
@@ -65,9 +57,7 @@ const UserDash = () => {
                     <UserActions></UserActions>
                 </button>
                 <MyTransactions></MyTransactions>
-                <div>
-                    {user && <button onClick={handleLogout} className="bg-red-700 text-white">Logout</button>}
-                </div>
+                <LogoutButton></LogoutButton>
             </div>
         </div>
         
