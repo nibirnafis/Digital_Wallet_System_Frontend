@@ -10,6 +10,7 @@ import UserDash from "../features/Modules/User/UserDash";
 import AgentDash from "../features/Modules/Agent/AgentDash";
 import TransactionForm from "../shared/components/Forms/TransactionForm";
 import AddMoneyForm from "../shared/components/Forms/AddMoneyForm";
+import MyTransactions from "../features/transaction/components/MyTransactions";
 // import RefreshToken from "../features/Auth/components/RefreshToken";
 // import UserActions from "../features/Modules/User/UserActions";
 
@@ -62,6 +63,20 @@ const routes = createBrowserRouter([
             {
                 element: <AgentDash></AgentDash>,
                 path: '/dashboard/agent',
+                children: [
+                    {
+                        element: <TransactionForm></TransactionForm>,
+                        path: '/dashboard/agent/transaction-form/:type',
+                    },
+                    {
+                        element: <AddMoneyForm></AddMoneyForm>,
+                        path: '/dashboard/agent/add-money-form/:type',
+                    },
+                ]
+            },
+            {
+                element: <MyTransactions></MyTransactions>,
+                path: '/dashboard/my-transactions',
             },
             /* {
                 element: <RefreshToken></RefreshToken>,

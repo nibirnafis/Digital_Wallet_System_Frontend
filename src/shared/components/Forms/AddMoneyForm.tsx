@@ -1,12 +1,15 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAddMoneyMutation } from "../../../redux/baseApi";
+import { setUser, type IUser } from "../../../features/Auth/slice/auth.slice";
+import { useDispatch } from "react-redux";
 
 const AddMoneyForm = () => {
 
     const transactionType = useParams().type
+    const dispatch = useDispatch()
     const [ addMoney ] = useAddMoneyMutation()
-    console.log(transactionType)
-
+    const navigate = useNavigate()
+    
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault()
@@ -15,7 +18,21 @@ const AddMoneyForm = () => {
     
             
             const transactionInfo = await addMoney({amount, transactionType}).unwrap()
-            console.log(transactionInfo)  
+
+            if(transactionInfo.success){
+                const updatedUser = transactionInfo.data.recieverUpdatedWallet.userId
+                const updatedWallet = transactionInfo.data.recieverUpdatedWallet
+                // console.log(updatedUser, updatedWallet)
+
+                const payload: IUser = {
+                    name: updatedUser.name,
+                    phone: updatedUser.phone,
+                    role: updatedUser.role,
+                    wallet: updatedWallet
+                }
+                dispatch(setUser(payload))
+                navigate("/")
+            }
         }
 
     return (

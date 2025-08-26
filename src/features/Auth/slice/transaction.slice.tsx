@@ -1,15 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { IUser } from "./auth.slice";
-
-
-export interface ITransaction {
-    amount: number,
-    from?: IUser,
-    status: string
-    to?: IUser,
-    userId: IUser,
-    type: string,
-}
+import type { ITransaction } from "../../transaction/transaction.type";
 
 
 interface IState {

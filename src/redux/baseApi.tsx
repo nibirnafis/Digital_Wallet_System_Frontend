@@ -64,5 +64,5 @@ export const {
   useUserLoginMutation, useLazyUserLogoutQuery, useLazyRefreshTokenQuery,
   useGetProfileQuery,
   useTransferMoneyMutation, useAddMoneyMutation,
-  useGetMyTransactionsQuery
+  useLazyGetMyTransactionsQuery, useGetMyTransactionsQuery,
  } = baseApi

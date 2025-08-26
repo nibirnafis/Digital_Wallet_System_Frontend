@@ -28,6 +28,10 @@ const UserDash = () => {
     return (
         <>
         <div className="grow">
+            <div className="text-blue-900 bg-blue-100 p-4 sticky top-12">
+                <p className="text-3xl font-bold text-center">DASHBOARD</p>
+                <p className="text-base text-center">SEE ALL YOUR ACTIVITIES</p>
+            </div>
             {
                 isDisplayed ?
                 <div className="flex justify-center items-center h-full w-full fixed">
@@ -66,22 +70,3 @@ const UserDash = () => {
 };
 
 export default UserDash;
-
-
-
-
-
-
-
-
-
-
-
-
-{/* <div className="h-full w-full relative">
-    <div className="absolute">
-        <Outlet></Outlet>
-    </div>
-    <button onClick={handleCloseForm} className="bg-red-700 rounded-full leading-none text-white p-2 absolute top-12 right-12">X</button>
-    <div className="h-full w-full opacity-80 bg-blue-600 relative"></div>
-</div> */}

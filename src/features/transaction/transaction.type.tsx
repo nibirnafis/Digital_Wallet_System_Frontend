@@ -7,4 +7,5 @@ export interface ITransaction {
     to?: IUser,
     userId: IUser,
     type: string,
+    createdAt: string
 }

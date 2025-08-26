@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useUserLoginMutation } from "../../../redux/baseApi";
+import { useLazyGetMyTransactionsQuery, useUserLoginMutation } from "../../../redux/baseApi";
 import type { IUser } from "../slice/auth.slice";
 import { useDispatch } from "react-redux";
 import { setUser } from "../slice/auth.slice";
@@ -8,6 +8,7 @@ import { setUser } from "../slice/auth.slice";
 const Login = () => {
 
     const [ userLogin ] = useUserLoginMutation()
+    const [ getMyTransactions ] = useLazyGetMyTransactionsQuery()
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -30,6 +31,7 @@ const Login = () => {
             }
             console.log(userInfo)
             dispatch(setUser(payload))
+            getMyTransactions(undefined)
             navigate(`/dashboard/${userInfo.data.role.toLowerCase()}`)
         }
     }

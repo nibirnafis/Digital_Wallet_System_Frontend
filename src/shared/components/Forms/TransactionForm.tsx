@@ -12,28 +12,28 @@ const TransactionForm = () => {
 
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-            e.preventDefault()
-            const form = e.currentTarget
-            const phone = form.phone.value
-            const amount = Number(form.amount.value)
-    
-            
-            const transactionInfo = await transferMoney({phone, amount, transactionType}).unwrap()
-            if(transactionInfo.success){
-                const updatedUser = transactionInfo.data.senderUpdatedWallet.userId
-                const updatedWallet = transactionInfo.data.senderUpdatedWallet
-                console.log(updatedUser, updatedWallet)
+        e.preventDefault()
+        const form = e.currentTarget
+        const phone = form.phone.value
+        const amount = Number(form.amount.value)
 
-                const payload: IUser = {
-                    name: updatedUser.name,
-                    phone: updatedUser.phone,
-                    role: updatedUser.role,
-                    wallet: updatedWallet
-                }
-                dispatch(setUser(payload))
-                navigate("/")
+        
+        const transactionInfo = await transferMoney({phone, amount, transactionType}).unwrap()
+        if(transactionInfo.success){
+            const updatedUser = transactionInfo.data.senderUpdatedWallet.userId
+            const updatedWallet = transactionInfo.data.senderUpdatedWallet
+            // console.log(updatedUser, updatedWallet)
+
+            const payload: IUser = {
+                name: updatedUser.name,
+                phone: updatedUser.phone,
+                role: updatedUser.role,
+                wallet: updatedWallet
             }
+            dispatch(setUser(payload))
+            navigate("/")
         }
+    }
 
     return (
         <>
