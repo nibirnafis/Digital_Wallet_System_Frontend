@@ -1,4 +1,4 @@
-import type { IUser } from "../Auth/slice/auth.slice";
+import type { IUser } from "../Auth/slice/auth.slice"
 
 export interface ITransaction {
     amount: number,
@@ -9,3 +9,5 @@ export interface ITransaction {
     type: string,
     createdAt: string
 }
+
+

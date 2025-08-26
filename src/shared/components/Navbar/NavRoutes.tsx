@@ -9,10 +9,21 @@ const NavRoutes = () => {
     return (
         <div className="flex gap-4 text-yellow-300">
             <NavLink to='/'>Home</NavLink>
+            
             {
-                user &&
-                <NavLink to={`/dashboard/${user.role.toLocaleLowerCase()}`}>Dashboard</NavLink>
+            user?.role === "USER" || user?.role === "AGENT" ?
+            <NavLink to={`/dashboard/${user?.role.toLocaleLowerCase()}`}>Dashboard</NavLink>
+            :
+            null
             }
+            
+            {
+            user?.role === "SUPERADMIN" || user?.role === "ADMIN" ?
+            <NavLink to={`/dashboard/${user?.role.toLocaleLowerCase()}`}>Admin Pannel</NavLink>
+            :
+            null
+            }
+            
             <NavLink to='/features'>Features</NavLink>
             <NavLink to='/contact'>Contact</NavLink>
             <NavLink to='/faq'>FAQ</NavLink>

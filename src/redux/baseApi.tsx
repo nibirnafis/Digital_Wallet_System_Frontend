@@ -28,11 +28,13 @@ export const baseApi = createApi({
 
 
 
-    // ------------- User ----------------
+    // ------------- User/admin ----------------
     
     getProfile: build.query({
       query: () => "/user/get-info-me"
     }),
+    
+    
     
     
     
@@ -56,13 +58,56 @@ export const baseApi = createApi({
       })
     }),
 
+
+
+
+    // ------------- Admin ----------------
+
+    createAdmin: build.mutation({
+      query: ({name, phone, pin, role}) => ({
+        url: "/user/create-admin",
+        method: "POST",
+        body: {name, phone, pin, role}
+      })
+    }),
+    getAllUser: build.query({
+      query: () => "/user/get-user"
+    }),
+    searchUser: build.mutation({
+      query: ({phone}) => ({
+        url: "/user/search-user",
+        method: "POST",
+        body: {phone}
+      })
+    }),
+
   })
 })
 
 
+
+
+
+
+
+
+
+
 export const { 
+  //----------auth
   useUserLoginMutation, useLazyUserLogoutQuery, useLazyRefreshTokenQuery,
+
+  //----------user/admin---------
   useGetProfileQuery,
+  
+
+  //----------Transaction
   useTransferMoneyMutation, useAddMoneyMutation,
   useLazyGetMyTransactionsQuery, useGetMyTransactionsQuery,
- } = baseApi
+
+
+  //----------admin---------
+  useCreateAdminMutation, useGetAllUserQuery, useSearchUserMutation
+
+
+} = baseApi

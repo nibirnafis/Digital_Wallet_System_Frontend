@@ -11,6 +11,10 @@ import AgentDash from "../features/Modules/Agent/AgentDash";
 import TransactionForm from "../shared/components/Forms/TransactionForm";
 import AddMoneyForm from "../shared/components/Forms/AddMoneyForm";
 import MyTransactions from "../features/transaction/components/MyTransactions";
+import AllUsers from "../features/Modules/Admin/AllUsers";
+import CreateAdminForm from "../shared/components/Forms/CreateAdminForm";
+import SearchUserForm from "../shared/components/Forms/SearchUserForm";
+import SearchedUser from "../features/Modules/Admin/SearchedUser";
 // import RefreshToken from "../features/Auth/components/RefreshToken";
 // import UserActions from "../features/Modules/User/UserActions";
 
@@ -45,6 +49,24 @@ const routes = createBrowserRouter([
             {
                 element: <AdminDash></AdminDash>,
                 path: '/dashboard/admin',
+                children: [
+                    {
+                        element: <CreateAdminForm></CreateAdminForm>,
+                        path: '/dashboard/admin/:type',
+                    },
+                    {
+                        element: <SearchUserForm></SearchUserForm>,
+                        path: '/dashboard/admin/search-user',
+                    },
+                ]
+            },
+            {
+                element: <SearchedUser></SearchedUser>,
+                path: '/dashboard/admin/user-profil',
+            },
+            {
+                element: <AllUsers></AllUsers>,
+                path: '/dashboard/admin/all-users',
             },
             {
                 element: <UserDash></UserDash>,
@@ -80,7 +102,7 @@ const routes = createBrowserRouter([
             },
             /* {
                 element: <RefreshToken></RefreshToken>,
-                path: '/refresh-token'
+                path: '/'
             } */
         ]
     }
