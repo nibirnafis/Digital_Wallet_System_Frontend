@@ -10,7 +10,7 @@ const Home = () => {
             </div>
             <div className="flex flex-col justify-center md:flex-col items-center">
 
-                <img className="w-full" src="../../../src/assets/cover.jpg" alt="" />
+                <img className="w-full" src="https://i.ibb.co.com/LXSd3x98/cover.jpg" alt="" />
 
 
                 <div className="lg:absolute py-12 text-amber-300 font-bold text-center text-5xl md:text-9xl max-w-[1280px] mx-4">
