@@ -3,9 +3,9 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const baseApi = createApi({
   reducerPath: "baseApi",
+  // baseUrl: 'http://localhost:3000/api/v1',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://digital-wallet-system-backend-znuw.onrender.com',
-    // baseUrl: 'http://localhost:3000/api/v1',
     credentials: "include"
   }),
   endpoints: (build) => ({
