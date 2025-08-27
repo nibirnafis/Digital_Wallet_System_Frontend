@@ -1,7 +1,9 @@
 export interface IUser {
+    _id: string,
     name: string,
     phone: string,
     role: string,
+    isBlocked: boolean,
     wallet?: {
         _id: string,
         userId: string,

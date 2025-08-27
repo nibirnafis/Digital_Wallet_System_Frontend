@@ -25,18 +25,25 @@ export const baseApi = createApi({
     refreshToken: build.query({
       query: () => "/auth/refresh-token"
     }),
-
-
-
+    
+    
+    
     // ------------- User/admin ----------------
     
     getProfile: build.query({
       query: () => "/user/get-info-me"
     }),
+    registerUser: build.mutation({
+      query: ({name, phone, pin, role}) => ({
+        url: "/user/create-user",
+        method: "POST",
+        body: {name, phone, pin, role}
+      })
+    }),
+        
     
-    
-    
-    
+
+
     
     // ------------- Transaction ----------------
     
@@ -80,6 +87,13 @@ export const baseApi = createApi({
         body: {phone}
       })
     }),
+    updateUserStatus: build.mutation({
+      query: ({isBlocked, id}) => ({
+        url: `/user/update-status/${id}`,
+        method: "PATCH",
+        body: {isBlocked}
+      })
+    }),
 
   })
 })
@@ -98,7 +112,7 @@ export const {
   useUserLoginMutation, useLazyUserLogoutQuery, useLazyRefreshTokenQuery,
 
   //----------user/admin---------
-  useGetProfileQuery,
+  useGetProfileQuery, useRegisterUserMutation,
   
 
   //----------Transaction
@@ -107,7 +121,7 @@ export const {
 
 
   //----------admin---------
-  useCreateAdminMutation, useGetAllUserQuery, useSearchUserMutation
+  useCreateAdminMutation, useGetAllUserQuery, useSearchUserMutation, useUpdateUserStatusMutation
 
 
 } = baseApi

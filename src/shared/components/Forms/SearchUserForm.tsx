@@ -23,9 +23,11 @@ const SearchUserForm = () => {
 
             const payload: ISearchedUser = {
                 userInfo:{
+                    _id: user._id,
                     name: user.name,
                     phone: user.phone,
                     role: user.role,
+                    isBlocked: user.isBlocked,
                     wallet: user.wallet
                 },
                 transactions: transactions

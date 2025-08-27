@@ -1,17 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import type { IUser } from "../../Modules/User/User.type";
 
-
-export interface IUser {
-    name: string,
-    phone: string,
-    role: string,
-    wallet?: {
-        _id: string,
-        userId: string,
-        balance: number,
-        status: string,
-    }
-}
 
 interface IState {
     user: IUser | null

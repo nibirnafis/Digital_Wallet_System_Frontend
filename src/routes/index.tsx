@@ -15,6 +15,8 @@ import AllUsers from "../features/Modules/Admin/AllUsers";
 import CreateAdminForm from "../shared/components/Forms/CreateAdminForm";
 import SearchUserForm from "../shared/components/Forms/SearchUserForm";
 import SearchedUser from "../features/Modules/Admin/SearchedUser";
+import UpdateUserStatusFrom from "../shared/components/Forms/UpdateUserStatusFrom";
+import Registration from "../shared/components/Forms/RegistrationForm";
 // import RefreshToken from "../features/Auth/components/RefreshToken";
 // import UserActions from "../features/Modules/User/UserActions";
 
@@ -47,6 +49,10 @@ const routes = createBrowserRouter([
                 path: '/login',
             },
             {
+                element: <Registration></Registration>,
+                path: '/register',
+            },
+            {
                 element: <AdminDash></AdminDash>,
                 path: '/dashboard/admin',
                 children: [
@@ -63,6 +69,12 @@ const routes = createBrowserRouter([
             {
                 element: <SearchedUser></SearchedUser>,
                 path: '/dashboard/admin/user-profil',
+                children: [
+                    {
+                        element: <UpdateUserStatusFrom></UpdateUserStatusFrom>,
+                        path: '/dashboard/admin/user-profil/update-user-status/:id',
+                    },
+                ]
             },
             {
                 element: <AllUsers></AllUsers>,

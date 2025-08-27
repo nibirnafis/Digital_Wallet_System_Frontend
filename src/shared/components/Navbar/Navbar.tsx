@@ -17,7 +17,7 @@ const Navbar = () => {
                     !user &&
                     <div>
                         <NavLink to='/login'><SmallButton title="Sign In"></SmallButton></NavLink>
-                        <SmallButton title="Register"></SmallButton>
+                        <NavLink to='/register'><SmallButton title="Register"></SmallButton></NavLink>
                     </div>
                 }
             </div>

@@ -1,15 +1,19 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useTransferMoneyMutation } from "../../../redux/baseApi";
-import { useDispatch} from "react-redux";
-import { setUser, type IUser } from "../../../features/Auth/slice/auth.slice";
+import { useDispatch, useSelector} from "react-redux";
+import { setUser } from "../../../features/Auth/slice/auth.slice";
+import type { IUser } from "../../../features/Modules/User/User.type";
+import type { RootState } from "../../../redux/configureStore";
 
 const TransactionForm = () => {
 
     const transactionType = useParams().type
+    const user = useSelector((state: RootState) => state.auth.user)
     const dispatch = useDispatch()
-    const [ transferMoney ] = useTransferMoneyMutation()
+    const [ transferMoney, {isError, error} ] = useTransferMoneyMutation()
     const navigate = useNavigate()
 
+    
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -18,21 +22,29 @@ const TransactionForm = () => {
         const amount = Number(form.amount.value)
 
         
+        
+    try {
         const transactionInfo = await transferMoney({phone, amount, transactionType}).unwrap()
         if(transactionInfo.success){
-            const updatedUser = transactionInfo.data.senderUpdatedWallet.userId
-            const updatedWallet = transactionInfo.data.senderUpdatedWallet
-            // console.log(updatedUser, updatedWallet)
+        const updatedUser = transactionInfo.data.senderUpdatedWallet.userId
+        const updatedWallet = transactionInfo.data.senderUpdatedWallet
+        console.log(updatedUser, updatedWallet)
 
-            const payload: IUser = {
-                name: updatedUser.name,
-                phone: updatedUser.phone,
-                role: updatedUser.role,
-                wallet: updatedWallet
-            }
-            dispatch(setUser(payload))
-            navigate("/")
+        const payload: IUser = {
+            _id: updatedUser._id,
+            name: updatedUser.name,
+            phone: updatedUser.phone,
+            role: updatedUser.role,
+            isBlocked: updatedUser.isBlocked,
+            wallet: updatedWallet
         }
+        dispatch(setUser(payload))
+        navigate(`/dashboard/${user!.role}`)
+    }
+    } catch (err) {
+        console.log("this is the error", err, error)
+    }
+        
     }
 
     return (
@@ -46,6 +58,9 @@ const TransactionForm = () => {
                 <label>Amount:
                     <input name="amount" type="number" />
                 </label>
+                {
+                isError && <p className="text-red-600">{error.data.message}</p>
+                }
                 <button className="bg-blue-500 text-white rounded-xl font-bold mt-2 px-2" type="submit">submit</button>
             </form>
         </div>
