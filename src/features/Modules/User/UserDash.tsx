@@ -26,7 +26,7 @@ const UserDash = () => {
 
     return (
         <>
-        <div className="grow">
+        <div className="grow ">
             <div className="text-blue-900 bg-blue-100 p-4">
                 <p className="text-3xl font-bold text-center">DASHBOARD</p>
                 <p className="text-base text-center">SEE ALL YOUR ACTIVITIES</p>

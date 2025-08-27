@@ -11,11 +11,11 @@ const Navbar = () => {
     return (
         <div className="bg-blue-900 w-full sticky top-0 py-3 px-4">
             <div className="flex justify-between items-center max-w-[1280px] m-auto ">
-                <p className="font-bold text-yellow-300">Logo</p>
+                <p className="font-bold text-lg text-yellow-300 md:text-2xl">CURRENCER</p>
                 <NavRoutes></NavRoutes>
                 {
                     !user &&
-                    <div className="flex gap-2">
+                    <div className="hidden md:flex gap-2">
                         <NavLink to='/login'><SmallButton title="Sign In"></SmallButton></NavLink>
                         <NavLink to='/register'><SmallButton title="Register"></SmallButton></NavLink>
                     </div>

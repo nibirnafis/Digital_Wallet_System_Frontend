@@ -4,6 +4,7 @@ import type { RootState } from "../../../redux/configureStore";
 import { RxAvatar } from "react-icons/rx";
 import { useState } from "react";
 import LogoutButton from "../LogoutButton";
+import SmallButton from "../Buttons/SmallButton";
 
 
 
@@ -53,22 +54,34 @@ const NavRoutes = () => {
             display && 
             <ul className="bg-yellow-300 flex flex-col gap-4 text-blue-900 p-8 absolute top-6 right-6">
                 <li ><NavLink to='/'>Home</NavLink></li>
-                <li >
-                    {
-                    user?.role === "USER" || user?.role === "AGENT" ?
-                    <NavLink to={`/dashboard/${user?.role.toLocaleLowerCase()}`}>Dashboard</NavLink>
+
+                {
+                    user ?
+                    <div>
+                        <li >
+                            {
+                            user?.role === "USER" || user?.role === "AGENT" ?
+                            <NavLink to={`/dashboard/${user?.role.toLocaleLowerCase()}`}>Dashboard</NavLink>
+                            :
+                            null
+                            }
+                        </li>
+                        <li >
+                            {
+                            user?.role === "SUPERADMIN" || user?.role === "ADMIN" ?
+                            <NavLink to={`/dashboard/${user?.role.toLocaleLowerCase()}`}>Admin Pannel</NavLink>
+                            :
+                            null
+                            }
+                        </li>
+                    </div>
                     :
-                    null
-                    }
-                </li>
-                <li >
-                    {
-                    user?.role === "SUPERADMIN" || user?.role === "ADMIN" ?
-                    <NavLink to={`/dashboard/${user?.role.toLocaleLowerCase()}`}>Admin Pannel</NavLink>
-                    :
-                    null
-                    }
-                </li>
+                    <div className="flex flex-col gap-2">
+                        <NavLink to='/login'><SmallButton title="Sign In"></SmallButton></NavLink>
+                        <NavLink to='/register'><SmallButton title="Register"></SmallButton></NavLink>
+                    </div>
+                }
+
                 <li ><NavLink to='/features'>Features</NavLink></li>
                 <li ><NavLink to='/contact'>Contact</NavLink></li>
                 <li ><NavLink to='/faq'>FAQ</NavLink></li>
