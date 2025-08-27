@@ -4,7 +4,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:3000/api/v1',
+    baseUrl: 'https://digital-wallet-system-backend-znuw.onrender.com/',
+    // baseUrl: 'http://localhost:3000/api/v1',
     credentials: "include"
   }),
   endpoints: (build) => ({
@@ -28,7 +29,7 @@ export const baseApi = createApi({
     
     
     
-    // ------------- User/admin ----------------
+    // ------------- User/agent ----------------
     
     getProfile: build.query({
       query: () => "/user/get-info-me"
@@ -94,6 +95,16 @@ export const baseApi = createApi({
         body: {isBlocked}
       })
     }),
+    deleteUser: build.query({
+      query: ({id}) => `/user/delete-user/${id}`
+    }),
+    updateUserWalletStatus: build.mutation({
+      query: ({status, id}) => ({
+        url: `/wallet/update-status/${id}`,
+        method: "PATCH",
+        body: {status}
+      })
+    }),
 
   })
 })
@@ -111,7 +122,7 @@ export const {
   //----------auth
   useUserLoginMutation, useLazyUserLogoutQuery, useLazyRefreshTokenQuery,
 
-  //----------user/admin---------
+  //----------user/agent---------
   useGetProfileQuery, useRegisterUserMutation,
   
 
@@ -121,7 +132,7 @@ export const {
 
 
   //----------admin---------
-  useCreateAdminMutation, useGetAllUserQuery, useSearchUserMutation, useUpdateUserStatusMutation
+  useCreateAdminMutation, useGetAllUserQuery, useSearchUserMutation, useUpdateUserStatusMutation, useLazyDeleteUserQuery, useUpdateUserWalletStatusMutation
 
 
 } = baseApi

@@ -4,6 +4,7 @@ export interface IUser {
     phone: string,
     role: string,
     isBlocked: boolean,
+    isDeleted: boolean,
     wallet?: {
         _id: string,
         userId: string,

@@ -28,6 +28,7 @@ const SearchUserForm = () => {
                     phone: user.phone,
                     role: user.role,
                     isBlocked: user.isBlocked,
+                    isDeleted: user.isDeleted,
                     wallet: user.wallet
                 },
                 transactions: transactions

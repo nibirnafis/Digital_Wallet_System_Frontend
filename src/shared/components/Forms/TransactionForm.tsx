@@ -10,7 +10,7 @@ const TransactionForm = () => {
     const transactionType = useParams().type
     const user = useSelector((state: RootState) => state.auth.user)
     const dispatch = useDispatch()
-    const [ transferMoney, {isError, error} ] = useTransferMoneyMutation()
+    const [ updateUserWalletStatus, {isError, error} ] = useTransferMoneyMutation()
     const navigate = useNavigate()
 
     
@@ -24,7 +24,7 @@ const TransactionForm = () => {
         
         
     try {
-        const transactionInfo = await transferMoney({phone, amount, transactionType}).unwrap()
+        const transactionInfo = await updateUserWalletStatus({phone, amount, transactionType}).unwrap()
         if(transactionInfo.success){
         const updatedUser = transactionInfo.data.senderUpdatedWallet.userId
         const updatedWallet = transactionInfo.data.senderUpdatedWallet
@@ -36,6 +36,7 @@ const TransactionForm = () => {
             phone: updatedUser.phone,
             role: updatedUser.role,
             isBlocked: updatedUser.isBlocked,
+            isDeleted: updatedUser.isDeleted,
             wallet: updatedWallet
         }
         dispatch(setUser(payload))
@@ -58,6 +59,7 @@ const TransactionForm = () => {
                 <label>Amount:
                     <input name="amount" type="number" />
                 </label>
+                <p className="text-gray-300 text-sm">MINIMUM TRANSACTION AMOUNT IS 10</p>
                 {
                 isError && <p className="text-red-600">{error.data.message}</p>
                 }

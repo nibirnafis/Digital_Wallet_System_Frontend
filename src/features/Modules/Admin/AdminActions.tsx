@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const AdminActions = () => {
     return (
-        <div className="flex justify-around text-blue-900 mt-6 border-yellow-300 border-1 rounded-2xl p-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-blue-900 mt-6 border-yellow-300 border-1 rounded-2xl p-8">
             <Link to='/dashboard/admin/create-admin'>
                 <div className="bg-yellow-300 p-4 rounded-2xl hover:scale-120 transition delay-150 duration-300 ease-in-out">
                     <p className="text-3xl font-bold">CREATE ADMIN</p>

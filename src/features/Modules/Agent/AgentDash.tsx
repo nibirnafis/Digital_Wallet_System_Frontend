@@ -4,7 +4,6 @@ import type { RootState } from "../../../redux/configureStore";
 import { useState } from "react";
 import AgentActions from "./AgentActions";
 import RecentTransactions from "../../transaction/components/RecentTransactions";
-import LogoutButton from "../../../shared/components/LogoutButton";
 
 const AgentDash = () => {
     const user = useSelector((state: RootState) => state.auth.user)
@@ -56,7 +55,6 @@ const AgentDash = () => {
                     <AgentActions></AgentActions>
                 </button>
                 <RecentTransactions></RecentTransactions>
-                <LogoutButton></LogoutButton>
             </div>
         </div>
         

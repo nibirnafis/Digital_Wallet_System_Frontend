@@ -13,20 +13,20 @@ const Transaction = ({transaction}: IProps) => {
     const time = createdAt.slice(11, 16)
 
     return (
-        <div className="flex justify-between items-center border-blue-100 border-2 rounded-xl p-4 text-base text-blue-900">
-            <p>TYPE: {type}</p>
-            <p>AMOUNT: {amount}TK</p>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 border-blue-100 border-2 rounded-xl p-4 text-base text-blue-900">
+            <p>Type: {type}</p>
+            <p>Amount: {amount}TK</p>
 
             { type !== "BANK TRANSFER" &&
                 <div>
-                    <p>FROM: {from?.name}</p>
-                    <p>PHONE: {from?.phone}</p>
+                    <p>From: {from?.name}</p>
+                    <p>Phone: {from?.phone}</p>
                 </div> 
             }
             { type !== "BANK TRANSFER" && 
                 <div>
-                    <p>TO: {to?.name}</p>
-                    <p>PHONE: {from?.phone}</p>
+                    <p>To: {to?.name}</p>
+                    <p>Phone: {from?.phone}</p>
                 </div> 
             }
 
@@ -35,7 +35,7 @@ const Transaction = ({transaction}: IProps) => {
                 <p>Date: {date}</p>
             </div> 
             
-            <p>STATUS: {status}</p>
+            <p>Status: {status}</p>
         </div>
     );
 };

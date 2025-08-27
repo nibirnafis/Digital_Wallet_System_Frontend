@@ -1,4 +1,4 @@
-import type { IUser } from "../../Auth/slice/auth.slice";
+import type { IUser } from "../User/User.type";
 
 interface IProps {
     user: IUser
@@ -11,7 +11,7 @@ const User = ({user}: IProps) => {
 
 
     return (
-        <div className="flex justify-between items-center border-blue-100 border-2 rounded-xl p-4 text-base text-blue-900">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 border-blue-100 border-2 rounded-xl p-4 text-base text-blue-900">
             <p>Name: {name}</p>
             <p>Phone: {phone}</p>
             <p>Role: {role}</p>

@@ -3,7 +3,7 @@ import { useCreateAdminMutation } from "../../../redux/baseApi";
 
 const CreateAdminForm = () => {
     const actionType = useParams().type
-        const [ createAdmin ] = useCreateAdminMutation()
+        const [ createAdmin, {isError, error} ] = useCreateAdminMutation()
         const navigate = useNavigate()
     
     
@@ -16,13 +16,18 @@ const CreateAdminForm = () => {
             const role = "ADMIN"
                 
 
-            const result = await createAdmin({name, phone, pin, role}).unwrap()
+            try {
+                const result = await createAdmin({name, phone, pin, role}).unwrap()
 
-            if(result.success){
-
-                console.log(result)
-                navigate("/")
+                if(result.success){
+                    console.log(result)
+                    navigate("/dashboard/admin")
+                }
+            } catch (err) {
+                console.log("this is the error", err)
             }
+            
+            
         }
     
         return (
@@ -39,6 +44,9 @@ const CreateAdminForm = () => {
                     <label>Pin:
                         <input name="pin" type="number" />
                     </label>
+                    {
+                    isError && <p className="text-red-600">{error.data.message}</p>
+                    }
                     <button className="bg-blue-500 text-white rounded-xl font-bold mt-2 px-2" type="submit">submit</button>
                 </form>
             </div>

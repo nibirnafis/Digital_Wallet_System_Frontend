@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useGetAllUserQuery } from "../../../redux/baseApi";
 import User from "./User";
-import type { IUser } from "../../Auth/slice/auth.slice";
+import type { IUser } from "../User/User.type";
 
 const AllUsers = () => {
     const { data, isLoading } = useGetAllUserQuery(undefined)

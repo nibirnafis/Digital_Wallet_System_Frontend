@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import type { RootState } from "../../../redux/configureStore";
 import UserActions from "./UserActions";
 import { useState } from "react";
-import LogoutButton from "../../../shared/components/LogoutButton";
 import RecentTransactions from "../../transaction/components/RecentTransactions";
 
 const UserDash = () => {
@@ -28,13 +27,13 @@ const UserDash = () => {
     return (
         <>
         <div className="grow">
-            <div className="text-blue-900 bg-blue-100 p-4 sticky top-12">
+            <div className="text-blue-900 bg-blue-100 p-4">
                 <p className="text-3xl font-bold text-center">DASHBOARD</p>
                 <p className="text-base text-center">SEE ALL YOUR ACTIVITIES</p>
             </div>
             {
                 isDisplayed ?
-                <div className="flex justify-center items-center h-full w-full fixed">
+                <div className="flex justify-center items-center h-full w-full fixed top-0">
                     <div className="bg-white opacity-80 h-full w-full"></div>
                     <Outlet></Outlet>
                     <button onClick={handleCloseForm} className="bg-red-700 rounded-full leading-none text-white p-2 absolute top-12 right-12">X</button>
@@ -61,7 +60,6 @@ const UserDash = () => {
                     <UserActions></UserActions>
                 </button>
                 <RecentTransactions></RecentTransactions>
-                <LogoutButton></LogoutButton>
             </div>
         </div>
         

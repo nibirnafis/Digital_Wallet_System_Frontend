@@ -49,6 +49,7 @@ const AddMoneyForm = () => {
                 <label>Amount:
                     <input name="amount" type="number" />
                 </label>
+                <p className="text-gray-300 text-sm">MINIMUM BANK TRANFER AMOUNT IS 500</p>
                 {
                 isError && <p className="text-red-600">{error.data.message}</p>
                 }

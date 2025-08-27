@@ -17,6 +17,8 @@ import SearchUserForm from "../shared/components/Forms/SearchUserForm";
 import SearchedUser from "../features/Modules/Admin/SearchedUser";
 import UpdateUserStatusFrom from "../shared/components/Forms/UpdateUserStatusFrom";
 import Registration from "../shared/components/Forms/RegistrationForm";
+import DeleteUserWarning from "../shared/components/Forms/DeleteUserWarning";
+import UpdateWalletStatusForm from "../shared/components/Forms/UpdateWalletStatusForm";
 // import RefreshToken from "../features/Auth/components/RefreshToken";
 // import UserActions from "../features/Modules/User/UserActions";
 
@@ -74,6 +76,14 @@ const routes = createBrowserRouter([
                         element: <UpdateUserStatusFrom></UpdateUserStatusFrom>,
                         path: '/dashboard/admin/user-profil/update-user-status/:id',
                     },
+                    {
+                        element: <DeleteUserWarning></DeleteUserWarning>,
+                        path: '/dashboard/admin/user-profil/delete-user/:id',
+                    },
+                    {
+                        element: <UpdateWalletStatusForm></UpdateWalletStatusForm>,
+                        path: '/dashboard/admin/user-profil/update-wallet-status/:id',
+                    }
                 ]
             },
             {

@@ -32,10 +32,11 @@ const UpdateUserStatusFrom = () => {
                     phone: user.phone,
                     role: user.role,
                     isBlocked: user.isBlocked,
+                    isDeleted: user.isDeleted,
                     wallet: user?.wallet
                 }
                 dispatch(setUpdatedUserStatus(payload))
-                navigate("/")
+                navigate("/dasboard/admin")
             }
         }
 

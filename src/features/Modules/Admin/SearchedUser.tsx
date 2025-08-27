@@ -61,10 +61,17 @@ const SearchedUser = () => {
                     <div className="flex flex-col text-blue-900">
                         <p className="text-5xl font-bold">{userInfo?.name}</p>
                         <p className="text-xl font-normal">+88{userInfo?.phone}<span className="text-base font-normal">({userInfo?.role})</span></p>
-                        <p className="text-xl font-normal text-white">{userInfo?.isBlocked ? "BLOCKED" : "ACTIVE"}</p>
+                        <div>
+                            {
+                            userInfo?.isDeleted ?
+                            <p className="text-xl font-normal text-white">{userInfo?.isDeleted ? "DELETED" : "ACTIVE"}</p>
+                            :
+                            <p className="text-xl font-normal text-white">{userInfo?.isBlocked ? "BLOCKED" : "ACTIVE"}</p>
+                            }
+                        </div>
                     </div>
                     <div className={
-                        userInfo?.wallet?.status === "DELETED" || userInfo?.wallet?.status === "BLOCKED" || userInfo?.wallet?.status === "SUSPENDED" ?
+                        userInfo?.wallet?.status === "DELETED" || userInfo?.wallet?.status === "BLOCKED" || userInfo?.wallet?.status === "SUSPENDED" || userInfo?.wallet?.status === "INACTIVE" ?
                         "flex flex-col justify-center items-center bg-red-500 rounded-2xl p-4"
                         :
                         userInfo?.wallet?.status === "PENDING" ?

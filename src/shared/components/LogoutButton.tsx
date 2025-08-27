@@ -20,7 +20,7 @@ const LogoutButton = () => {
 
     return (
         <div>
-            {user && <button onClick={handleLogout} className="bg-red-700 text-white">Logout</button>}
+            {user && <button onClick={handleLogout} >Logout</button>}
         </div>
     );
 };

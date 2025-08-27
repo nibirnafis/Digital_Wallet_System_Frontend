@@ -2,7 +2,6 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../redux/configureStore";
 import { useState } from "react";
-import LogoutButton from "../../../shared/components/LogoutButton";
 import AdminActions from "./AdminActions";
 
 const AdminDash = () => {
@@ -20,20 +19,20 @@ const AdminDash = () => {
     
     const handleCloseForm = () =>{
         setIsDisplayed(!isDisplayed)
-        navigate('/dashboard/admin')
+        navigate(`/dashboard/${user?.role}`)
     }
 
 
     return (
         <>
         <div className="grow">
-            <div className="text-blue-900 bg-blue-100 p-4 sticky top-12">
+            <div className="text-blue-900 bg-blue-100 p-4">
                 <p className="text-3xl font-bold text-center">ADMIN PANNEL</p>
                 <p className="text-base text-center">SEE ALL YOUR ACTIVITIES</p>
             </div>
             {
                 isDisplayed ?
-                <div className="flex justify-center items-center h-full w-full fixed">
+                <div className="flex justify-center items-center h-full w-full fixed top-0">
                     <div className="bg-white opacity-80 h-full w-full"></div>
                     <Outlet></Outlet>
                     <button onClick={handleCloseForm} className="bg-red-700 rounded-full leading-none text-white p-2 absolute top-12 right-12">X</button>
@@ -50,16 +49,20 @@ const AdminDash = () => {
                             <p className="text-5xl font-bold">{user.name}</p>
                             <p className="text-xl font-normal">+88{user.phone}</p>
                         </div>
-                        <div className="flex flex-col justify-center items-center bg-blue-900 rounded-2xl p-4">
-                            <p className="text-white text-4xl font-bold">{user.wallet?.balance}<span className="text-base font-normal">tk</span></p>
-                            <p className="text-blue-100 text-base font-normal">BALANCE</p>
-                        </div>
+                    <div className={
+                        user.isBlocked ?
+                        "flex flex-col justify-center items-center bg-red-500 rounded-2xl p-4"
+                        :
+                        "flex flex-col justify-center items-center bg-blue-900 rounded-2xl p-4"
+                        }>
+                        <p className="text-white text-2xl font-bold">{user.isBlocked ? "BLOCKED" : "ACTIVE"}</p>
+                        <p className="text-yellow-300 text-base font-normal">user</p>
+                    </div>
                     </div>
                 }
                 <button onClick={handleOpenForm}>
                     <AdminActions></AdminActions>
                 </button>
-                <LogoutButton></LogoutButton>
             </div>
         </div>
         
