@@ -1,12 +1,12 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useLazyDeleteUserQuery } from "../../../redux/baseApi";
+import { useState } from "react";
 
 const DeleteUserWarning = () => {
     const id = useParams().id
-        const [ deleteUser, {isError, error} ] = useLazyDeleteUserQuery()
+        const [ deleteUser, {isError} ] = useLazyDeleteUserQuery()
         const navigate = useNavigate()
-        console.log(id)
-            
+        const [ er, setEr ] = useState(null)            
     
     
         const handleDelete = async () => {
@@ -18,8 +18,10 @@ const DeleteUserWarning = () => {
                 navigate("/dashboard/admin")
             }
             
-        } catch (err) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } catch (err: any) {
             console.log("this is the error", err)
+            setEr(err.data.message)
         }       
         }
     
@@ -31,7 +33,7 @@ const DeleteUserWarning = () => {
                 <button className="bg-blue-500 text-white rounded-xl font-bold mt-2 px-2" type="submit">NO</button>
                 <button onClick={handleDelete} className="bg-red-500 text-white rounded-xl font-bold mt-2 px-2" type="submit">YES</button>
                 {
-                    isError && <p className="text-red-600">{error.data.message}</p>
+                    isError && <p className="text-red-600">{er}</p>
                 }
             </div>
         )

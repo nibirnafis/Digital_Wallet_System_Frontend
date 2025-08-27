@@ -1,10 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useNavigate, useParams } from "react-router-dom";
 import { useCreateAdminMutation } from "../../../redux/baseApi";
+import { useState } from "react";
 
 const CreateAdminForm = () => {
     const actionType = useParams().type
-        const [ createAdmin, {isError, error} ] = useCreateAdminMutation()
+        const [ createAdmin, {isError} ] = useCreateAdminMutation()
         const navigate = useNavigate()
+        const [ er, setEr ] = useState(null)
+        
     
     
         const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -23,8 +27,9 @@ const CreateAdminForm = () => {
                     console.log(result)
                     navigate("/dashboard/admin")
                 }
-            } catch (err) {
+            } catch (err: any) {
                 console.log("this is the error", err)
+                setEr(err.data.message)
             }
             
             
@@ -45,7 +50,7 @@ const CreateAdminForm = () => {
                         <input name="pin" type="number" />
                     </label>
                     {
-                    isError && <p className="text-red-600">{error.data.message}</p>
+                    isError && <p className="text-red-600">{er}</p>
                     }
                     <button className="bg-blue-500 text-white rounded-xl font-bold mt-2 px-2" type="submit">submit</button>
                 </form>

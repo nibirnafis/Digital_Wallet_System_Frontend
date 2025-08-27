@@ -1,12 +1,14 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useUpdateUserWalletStatusMutation } from "../../../redux/baseApi";
+import { useState } from "react";
 
 
 const UpdateWalletStatusForm = () => {
 
     const id = useParams().id
-    const [ registerUser, {isError, error} ] = useUpdateUserWalletStatusMutation()
+    const [ registerUser, {isError} ] = useUpdateUserWalletStatusMutation()
     const navigate = useNavigate()
+    const [ er, setEr ] = useState(null)
 
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -21,8 +23,10 @@ const UpdateWalletStatusForm = () => {
                 console.log(updatefWallet)
                 navigate("/dashboard/admin")
             }
-        } catch (error) {
-            console.log("this is the error", error)
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } catch (err: any) {
+            console.log("this is the error", err)
+            setEr(err.data.message)
         }
         
     }
@@ -53,7 +57,7 @@ const UpdateWalletStatusForm = () => {
                     </label> SUSPENDED
                 </div>
                 {
-                isError && <p className="text-red-600">{error.data.message}</p>
+                isError && <p className="text-red-600">{er}</p>
                 }
                 <button className="bg-blue-500 text-white rounded-xl font-bold mt-2 px-2" type="submit">SUBMIT</button>
             </form>

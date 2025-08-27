@@ -1,4 +1,4 @@
-import type { IUser } from "../Auth/slice/auth.slice"
+import type { IUser } from "../Modules/User/User.type"
 
 export interface ITransaction {
     amount: number,

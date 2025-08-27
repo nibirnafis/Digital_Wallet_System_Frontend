@@ -4,14 +4,16 @@ import { useDispatch, useSelector} from "react-redux";
 import { setUser } from "../../../features/Auth/slice/auth.slice";
 import type { IUser } from "../../../features/Modules/User/User.type";
 import type { RootState } from "../../../redux/configureStore";
+import { useState } from "react";
 
 const TransactionForm = () => {
 
     const transactionType = useParams().type
     const user = useSelector((state: RootState) => state.auth.user)
     const dispatch = useDispatch()
-    const [ updateUserWalletStatus, {isError, error} ] = useTransferMoneyMutation()
+    const [ updateUserWalletStatus, {isError} ] = useTransferMoneyMutation()
     const navigate = useNavigate()
+    const [ er, setEr ] = useState(null)
 
     
 
@@ -42,8 +44,10 @@ const TransactionForm = () => {
         dispatch(setUser(payload))
         navigate(`/dashboard/${user!.role}`)
     }
-    } catch (err) {
-        console.log("this is the error", err, error)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
+        console.log("this is the error", err)
+        setEr(err.data.message)
     }
         
     }
@@ -61,7 +65,7 @@ const TransactionForm = () => {
                 </label>
                 <p className="text-gray-300 text-sm">MINIMUM TRANSACTION AMOUNT IS 10</p>
                 {
-                isError && <p className="text-red-600">{error.data.message}</p>
+                isError && <p className="text-red-600">{er}</p>
                 }
                 <button className="bg-blue-500 text-white rounded-xl font-bold mt-2 px-2" type="submit">submit</button>
             </form>

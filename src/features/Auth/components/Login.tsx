@@ -29,6 +29,7 @@ const Login = () => {
                 phone: userInfo.data.phone,
                 role: userInfo.data.role,
                 isBlocked: userInfo.data.isBlocked,
+                isDeleted: userInfo.isDeleted,
                 wallet: userInfo.data.wallet
             }
             dispatch(setUser(payload))
