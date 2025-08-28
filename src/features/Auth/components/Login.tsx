@@ -3,6 +3,7 @@ import { useLazyGetMyTransactionsQuery, useUserLoginMutation } from "../../../re
 import { useDispatch } from "react-redux";
 import { setUser } from "../slice/auth.slice";
 import type { IUser } from "../../Modules/User/User.type";
+import { toast } from 'react-toastify';
 
 
 const Login = () => {
@@ -13,6 +14,7 @@ const Login = () => {
     const navigate = useNavigate()
 
 
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const form = e.currentTarget
@@ -21,8 +23,9 @@ const Login = () => {
 
         
         const userInfo = await userLogin({phone, pin}).unwrap()
-        
-        if(userInfo.success){
+
+        try {
+            if(userInfo.success){
             const payload: IUser = {
                 _id: userInfo.data._id,
                 name: userInfo.data.name,
@@ -32,10 +35,20 @@ const Login = () => {
                 isDeleted: userInfo.isDeleted,
                 wallet: userInfo.data.wallet
             }
+            toast("Successfully Logged In")
             dispatch(setUser(payload))
             getMyTransactions(undefined)
             navigate(`/dashboard/${userInfo.data.role.toLowerCase()}`)
+        }else{
+            toast("Wrong User Information")
         }
+        } catch (error) {
+            console.log(error)
+        }
+        
+        
+
+
     }
 
 

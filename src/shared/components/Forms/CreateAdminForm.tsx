@@ -2,6 +2,9 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useCreateAdminMutation } from "../../../redux/baseApi";
 import { useState } from "react";
+import { toast } from 'react-toastify';
+
+
 
 const CreateAdminForm = () => {
     const actionType = useParams().type
@@ -25,6 +28,8 @@ const CreateAdminForm = () => {
 
                 if(result.success){
                     console.log(result)
+                    toast('Admin Creation Successfull')
+                    
                     navigate("/dashboard/admin")
                 }
             } catch (err: any) {

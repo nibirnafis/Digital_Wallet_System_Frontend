@@ -1,6 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useUpdateUserWalletStatusMutation } from "../../../redux/baseApi";
 import { useState } from "react";
+import { toast } from 'react-toastify';
+
 
 
 const UpdateWalletStatusForm = () => {
@@ -21,6 +23,7 @@ const UpdateWalletStatusForm = () => {
         
             if(updatefWallet.success){
                 console.log(updatefWallet)
+                toast('User Wallet Successfully Updated')
                 navigate("/dashboard/admin")
             }
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import type { IUser } from "../../../features/Modules/User/User.type";
 import { setUser } from "../../../features/Auth/slice/auth.slice";
 import { useState } from "react";
+import { toast } from 'react-toastify';
+
 
 const AddMoneyForm = () => {
 
@@ -36,6 +38,7 @@ const AddMoneyForm = () => {
                 isDeleted: updatedUser.isDeleted,
                 wallet: updatedWallet
             }
+            toast("Add Money successfull")
             dispatch(setUser(payload))
             navigate("/")
         }

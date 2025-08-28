@@ -4,6 +4,8 @@ import { useUpdateUserStatusMutation } from "../../../redux/baseApi";
 import type { RootState } from "../../../redux/configureStore";
 import { setUpdatedUserStatus } from "../../../features/Auth/slice/searchedUserInfo.slice";
 import type { IUser } from "../../../features/Modules/User/User.type";
+import { toast } from 'react-toastify';
+
 
 
 const UpdateUserStatusFrom = () => {
@@ -35,8 +37,9 @@ const UpdateUserStatusFrom = () => {
                     isDeleted: user.isDeleted,
                     wallet: user?.wallet
                 }
+                toast('User Status Successfully Updated')
                 dispatch(setUpdatedUserStatus(payload))
-                navigate("/dasboard/admin")
+                navigate("/")
             }
         }
 

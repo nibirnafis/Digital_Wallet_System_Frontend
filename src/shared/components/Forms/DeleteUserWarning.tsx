@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useLazyDeleteUserQuery } from "../../../redux/baseApi";
 import { useState } from "react";
+import { toast } from 'react-toastify';
 
 const DeleteUserWarning = () => {
     const id = useParams().id
@@ -15,6 +16,7 @@ const DeleteUserWarning = () => {
             const result = await deleteUser({id}).unwrap()
             if(result){
                 console.log(result)
+                toast('User Successfully Deleted')
                 navigate("/dashboard/admin")
             }
             

@@ -1,5 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useRegisterUserMutation } from "../../../redux/baseApi";
+import { toast } from 'react-toastify';
+
+
 
 
 const Registration = () => {
@@ -21,6 +24,7 @@ const Registration = () => {
         
         if(userInfo.success){
             console.log(userInfo)
+            toast('Registration Successfull')
             navigate("/login")
         }
     }

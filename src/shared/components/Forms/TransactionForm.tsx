@@ -5,6 +5,8 @@ import { setUser } from "../../../features/Auth/slice/auth.slice";
 import type { IUser } from "../../../features/Modules/User/User.type";
 import type { RootState } from "../../../redux/configureStore";
 import { useState } from "react";
+import { toast } from 'react-toastify';
+
 
 const TransactionForm = () => {
 
@@ -41,6 +43,7 @@ const TransactionForm = () => {
             isDeleted: updatedUser.isDeleted,
             wallet: updatedWallet
         }
+        toast("Transaction Successfull")
         dispatch(setUser(payload))
         navigate(`/dashboard/${user!.role}`)
     }
