@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -6,10 +7,10 @@ const Footer = () => {
                 <p className="font-bold text-yellow-300 text-lg md:text-2xl">CURRENCER</p>
 
                 <div className="flex md:flex-col text-yellow-300 gap-2">
-                    <p>HOME</p>
-                    <p>FEATURES</p>
-                    <p>CONTACT</p>
-                    <p>FAQ</p>
+                    <NavLink to='/'>Home</NavLink>
+                    <NavLink to='/features'>Features</NavLink>
+                    <NavLink to='/contact'>Contact</NavLink>
+                    <NavLink to='/faq'>FAQ</NavLink>
                 </div>
             </div>
         </div>
